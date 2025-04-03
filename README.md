@@ -12,4 +12,6 @@ This repository is the central hub for our development work, collaboration, and 
 - **Anthony Rodriguez** – 
 - **Khalisah Khan** – 
 
+Bloom Housing repositories:
 
+https://github.com/bloom-housing/
