@@ -1,0 +1,87 @@
+<!DOCTYPE html>
+<html lang="en">
+	<head>
+		<meta charset="UTF-8" />
+		<meta name="viewport" content="width=device-width, initial-scale=1.0" />
+		<title>Housing Assistant Chat</title>
+		<style>
+			body {
+				font-family: Arial, sans-serif;
+				background-color: #f8f9fa;
+				margin: 0;
+				padding: 20px;
+			}
+			.chatbox {
+				max-width: 600px;
+				margin: 0 auto;
+				background: white;
+				padding: 20px;
+				border-radius: 8px;
+				box-shadow: 0 2px 8px rgba(0, 0, 0, 0.1);
+			}
+			.message {
+				margin-bottom: 15px;
+			}
+			.user {
+				font-weight: bold;
+			}
+			.bot {
+				color: #007bff;
+			}
+			input[type='text'] {
+				width: 80%;
+				padding: 10px;
+				margin-top: 10px;
+				border-radius: 5px;
+				border: 1px solid #ccc;
+			}
+			button {
+				padding: 10px 15px;
+				margin-left: 10px;
+				border: none;
+				background-color: #007bff;
+				color: white;
+				border-radius: 5px;
+				cursor: pointer;
+			}
+			button:hover {
+				background-color: #0056b3;
+			}
+		</style>
+	</head>
+	<body>
+		<div class="chatbox">
+			<h2>Ask a Housing Question</h2>
+			<div id="chat"></div>
+			<input
+				type="text"
+				id="userInput"
+				placeholder="Type your question here..."
+			/>
+			<button onclick="sendMessage()">Send</button>
+		</div>
+
+		<script>
+			async function sendMessage() {
+				const chat = document.getElementById('chat');
+				const input = document.getElementById('userInput');
+				const userMessage = input.value.trim();
+				if (!userMessage) return;
+
+				chat.innerHTML += `<div class="message user">You: ${userMessage}</div>`;
+				input.value = '';
+
+				const response = await fetch('http://localhost:8000/query', {
+					method: 'POST',
+					headers: {
+						'Content-Type': 'application/json',
+					},
+					body: JSON.stringify({ query: userMessage }),
+				});
+
+				const data = await response.json();
+				chat.innerHTML += `<div class="message bot">🤖: ${data.response}</div>`;
+			}
+		</script>
+	</body>
+</html>
