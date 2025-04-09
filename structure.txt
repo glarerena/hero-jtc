@@ -1,0 +1,46 @@
+capstone-chatbot/
+├── api/                             # NestJS backend
+│   ├── src/
+│   │   ├── chatbot/
+│   │   │   ├── chatbot.controller.ts
+│   │   │   └── chatbot.service.ts   # Calls LM Studio or Python microservice
+│   │   └── main.ts
+│   ├── test/
+│   ├── swagger.yaml                 # Optional: OpenAPI docs
+│   ├── tsconfig.json
+│   ├── nest-cli.json
+│   └── package.json
+├── python-llm-service/              # Python microservice (FastAPI or Flask)
+│   ├── app.py                       # Entry point for LLM logic
+│   ├── rag_utils.py                 # ✅ NEW: RAG helper to fetch context
+│   ├── requirements.txt
+│   └── README.md
+├── context/                         # ✅ NEW: Static context files for RAG
+│   ├── affordable-housing.md
+│   ├── eligibility-faq.json
+│   └── general-info.txt
+├── sites/
+│   └── chatbot/                     # Next.js frontend
+│       ├── pages/
+│       │   └── index.tsx            # Main chatbot interface
+│       ├── components/
+│       │   ├── ChatBox.tsx
+│       │   └── ChatBox.module.css   # CSS Modules styling
+│       ├── styles/
+│       │   └── globals.css          # Optional global styles
+│       ├── public/
+│       ├── tests/
+│       │   └── ChatBox.test.tsx
+│       └── package.json
+├── shared-helpers/
+│   └── formatResponse.ts            # Shared utilities (optional)
+├── .env                             # For LM Studio or microservice URL
+├── .gitignore
+├── ethics-disclaimer.md            # Bloom's AI Ethics alignment
+├── README.md
+├── tsconfig.json
+└── yarn.lock
+
+
+
+
