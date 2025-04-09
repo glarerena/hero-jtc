@@ -1,0 +1,9 @@
+.chatbox {
+    margin-top: 2rem;
+    padding: 1rem;
+    border: 1px solid #ccc;
+    border-radius: 8px;
+    background-color: #f9f9f9;
+    white-space: pre-wrap;
+  }
+  
