@@ -1,42 +1,57 @@
-# 🧪 Bloom-RAG LLM Hackathon Prototype – JTC Flagship Capstone Spring 2025
 
-Welcome! This branch contains an early backend prototype created during the hackathon ideation phase of our Capstone project. It was built to test a single-turn chatbot using Retrieval-Augmented Generation (RAG) techniques with a locally hosted LLM.
+# 🧠 Capstone MVP – RAG Chatbot (Local Setup)
 
-This prototype was later removed from the `main` branch to keep the MVP scope focused but is preserved here for reference and potential future use during Phase 2 or 3.
+This project is a barebones prototype for a single-turn Retrieval-Augmented Generation (RAG) chatbot with no memory. It includes:
 
----
-
-## 📁 Included in This Prototype
-
-- `bloom-rag/backend/`
-  - `main.py` – Entry point for the local LLM backend server
-  - `rag_chat.py`, `OG_rag_chat.py` – RAG logic for pulling static context
-  - `debug_ami.py` – Optional debug/test module
-  - `static/index.html` – Basic web interface for testing
-  - `requirements.txt` – Python dependencies for the prototype
+- A **NestJS backend** (`api/`)
+- A **FastAPI microservice** (`python-llm-service/`)
+- A **Next.js frontend** (`sites/chatbot/`)
+- Static context files stored in `context/`
 
 ---
 
-## 🔎 Branch Purpose
+## 🛠️ How to Run Locally
 
-- This branch contains experimental work and is not part of the official MVP.
-- The LLM code was developed quickly during the hackathon planning phase.
-- It can be referenced or reused in later stages of the Capstone timeline.
+### 1. Clone the repo (if not already)
+```bash
+git clone https://github.com/your-username/chatbot.git
+cd chatbot
+```
+
+### 2. Start the Python FastAPI microservice
+```bash
+cd python-llm-service
+python3 -m venv venv
+source venv/bin/activate
+pip install -r requirements.txt
+uvicorn app:app --reload --port 8000
+```
+✅ Leave this running in a terminal tab
+
+### 3. Start the NestJS backend
+Open a **new terminal tab**:
+```bash
+cd api
+yarn install
+yarn start
+```
+📍 The NestJS server runs on: `http://localhost:3000`
+
+### 4. Start the Next.js frontend
+Open a **third terminal tab**:
+```bash
+cd sites/chatbot
+yarn install
+yarn dev
+```
+Visit: `http://localhost:3000` to chat with the bot
+
+## 📄 Notes
+* Static RAG context lives in: `context/affordable-housing.md`
+* API route (NestJS): `POST /chatbot`
+* Microservice route (FastAPI): `POST /generate`
 
 ---
 
-## 👥 Team Members
-
-- **Rena Glare** – Team Lead / MVP Architecture
-- **Howard Mahaffey**
-- **Ryan Pham**
-- **Anthony Rodriguez**
-- **Khalisah Khan**
-
----
-
-## 🔗 Related Repositories
-
-- Capstone MVP (main branch): [Main MVP Code](https://github.com/glarerena/jtc-capstone-2025/tree/main)
-- Bloom Housing GitHub: [https://github.com/bloom-housing/](https://github.com/bloom-housing/)
+>>>>>>> chatbot/main
 
