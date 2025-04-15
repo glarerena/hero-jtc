@@ -1,4 +1,4 @@
-# 🌱 Bloom Assist Chatbot
+# Bloom Assist Chatbot
 
 A single-turn Retrieval-Augmented Generation (RAG) chatbot designed to assist frontline workers and individuals in accessing affordable housing resources.
 
@@ -19,44 +19,45 @@ A single-turn Retrieval-Augmented Generation (RAG) chatbot designed to assist fr
 
 ## 🛠️ Installation and Setup Instructions
 
-### 1. Clone the repository
-
+1. Clone the repository
 ```bash
 git clone https://github.com/your-username/jtc-capstone-2025.git
 cd jtc-capstone-2025
 ```
 
-### 2. Set up the Python LLM service
-
+2. Go into python-llm-service folder and create/activate a virtual environment (optional)
 ```bash
 cd python-llm-service
 python3 -m venv venv
 source venv/bin/activate
+```
+
+3. Go into python-llm-service folder and install requirements
+```bash
+cd python-llm-service
 pip install -r requirements.txt
 uvicorn app:app --reload --port 8000
 ```
+👍 Leave this running in a terminal tab
+Open a new terminal to start the next step.
 
-👍 Leave this running in a terminal tab. Open a new terminal to start the next step.
-
-### 3. Start the NestJS backend
-
+4. Start the NestJS backend
 ```bash
 cd api
 yarn install
 yarn start
 ```
+👍 Leave this running in a terminal tab
+Open a new terminal to start the next step.
 
-👍 Leave this running in a terminal tab. Open a new terminal to start the next step.
-
-### 4. Start the Next.js frontend
-
+5. Start the Next.js frontend
 ```bash
 cd sites/chatbot
 yarn install
 yarn dev
 ```
-
-👍 Leave this running in a terminal tab. Once all services are running, visit: `http://localhost:3000`
+👍 Leave this running in a terminal tab
+Visit: `http://localhost:3000`
 
 ## ▶️ Usage Example
 
@@ -97,26 +98,6 @@ Once all three services are running, visit `http://localhost:3000` and interact 
 │   └── chatbot/
 └── structure.txt
 ```
-
-## 👥 Contributing
-
-For details on how to contribute to this project, please see our [contributing guidelines](contributing.md).
-
-## 🔍 Technical Overview
-
-Bloom Assist uses a RAG (Retrieval-Augmented Generation) architecture to provide accurate, context-aware responses about affordable housing:
-
-1. User queries are processed by the Next.js frontend
-2. The NestJS backend routes these queries to the Python microservice
-3. The Python service uses ChromaDB to retrieve relevant housing information
-4. LLM-generated responses are returned to the user with accurate, helpful information
-
-## 🔮 Future Enhancements
-
-- Multi-turn conversation support
-- User account management
-- Additional resource categories beyond housing
-- Mobile app version
 
 ## 📄 License
 
