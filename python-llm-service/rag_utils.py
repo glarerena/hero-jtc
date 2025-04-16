@@ -1,17 +1,5 @@
-import os
 import requests
-
-
-# def get_context(question: str) -> str:
-#     # Get absolute path to the context file one level up
-#     base_dir = os.path.dirname(os.path.abspath(__file__))  # This is python-llm-service/
-#     context_path = os.path.join(base_dir, "../context/affordable-housing.md")
-
-#     try:
-#         with open(context_path, "r") as f:
-#             return f.read()
-#     except FileNotFoundError:
-#         return "⚠️ Context file not found."
+import json
 
 def get_context(question: str) -> str:
     listings = get_live_housing_listings()
@@ -20,12 +8,24 @@ def get_context(question: str) -> str:
     
     formatted_listings = []
     for item in listings:
-        title = item.get("title", "No Title")
-        link = item.get("application_link", "#")
-        location = item.get("location", "Unknown location")
-        description = item.get("description", "No description available")
+        if not isinstance(item, dict):
+            continue
+
+        # Extract essential fields
+        title = item.get("name", "No Title")
         
-        # Format each listing as a markdown bullet point or block
+        # Extract location (jurisdiction name)
+        jurisdiction = item.get("jurisdictions", {})
+        location = jurisdiction.get("name", "Unknown location") if isinstance(jurisdiction, dict) else "Unknown location"
+        
+        # Add fallback for missing descriptions
+        description = item.get("description") or "No description available"
+        
+        # Construct clickable link using urlSlug
+        slug = item.get("urlSlug", "")
+        link = f"https://bloom.exygy.dev/listing/{slug}" if slug else "#"
+        
+        # Final listing format
         formatted_listing = (
             f"**[{title}]({link})**\n"
             f"Location: {location}\n"
@@ -35,19 +35,27 @@ def get_context(question: str) -> str:
     
     return "\n".join(formatted_listings)
 
+
 def get_live_housing_listings():
-    # Update this base URL to match your API deployment
-    base_url = "http://localhost:3000"
-    # The relative route defined in the controller, using a query to filter for the SF Bay Area
-    endpoint = "/listings?location=San%20Francisco%20Bay%20Area"
+    base_url = "http://localhost:3100"
+    endpoint = "/listings?limit=5"
     url = f"{base_url}{endpoint}"
     
     try:
         response = requests.get(url)
-        response.raise_for_status()  # Raises an exception for HTTP errors
-        listings = response.json()     # Convert the JSON response to a Python object (list/dict)
-        return listings
-    except requests.RequestException as e:
-        # Log the error (or print) and return an empty list or error message
-        print(f"Error fetching dynamic housing data: {e}")
+        response.raise_for_status()
+        data = response.json()
+        
+        # Handle response structure
+        if isinstance(data, dict):
+            return data.get("items", data.get("data", []))
+        return data
+
+    except (requests.RequestException, json.JSONDecodeError) as e:
+        print(f"❌ Error fetching housing data: {e}")
         return []
+
+
+# Run as standalone script for testing
+if __name__ == "__main__":
+    print(get_context("Show me listings"))
