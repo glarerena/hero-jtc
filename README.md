@@ -1,57 +1,105 @@
+# Bloom Assist Chatbot
 
-# 🧠 Capstone MVP – RAG Chatbot (Local Setup)
+A single-turn Retrieval-Augmented Generation (RAG) chatbot designed to assist frontline workers and individuals in accessing affordable housing resources.
 
-This project is a barebones prototype for a single-turn Retrieval-Augmented Generation (RAG) chatbot with no memory. It includes:
+## 💻 Technologies and Frameworks Used
 
-- A **NestJS backend** (`api/`)
-- A **FastAPI microservice** (`python-llm-service/`)
-- A **Next.js frontend** (`sites/chatbot/`)
-- Static context files stored in `context/`
+* **Frontend:** Next.js (sites/chatbot)
+* **Backend:** NestJS (api/)
+* **Microservice:** FastAPI (python-llm-service/)
+* **Database:** ChromaDB (for vector storage)
+* **Other:** Markdown-based static content, Yarn, Python 3.x
 
----
+## ✨ Features
 
-## 🛠️ How to Run Locally
+* Conversational UI for housing-related questions
+* Static RAG context integration from markdown files
+* Microservice architecture
+* Framework integration
 
-### 1. Clone the repo (if not already)
+## 🛠️ Installation and Setup Instructions
+
+1. Clone the repository
 ```bash
-git clone https://github.com/your-username/chatbot.git
-cd chatbot
+git clone https://github.com/your-username/jtc-capstone-2025.git
+cd jtc-capstone-2025
 ```
 
-### 2. Start the Python FastAPI microservice
+2. Go into python-llm-service folder and create/activate a virtual environment (optional)
 ```bash
 cd python-llm-service
 python3 -m venv venv
 source venv/bin/activate
+```
+
+3. Go into python-llm-service folder and install requirements
+```bash
+cd python-llm-service
 pip install -r requirements.txt
 uvicorn app:app --reload --port 8000
 ```
-✅ Leave this running in a terminal tab
+👍 Leave this running in a terminal tab
+Open a new terminal to start the next step.
 
-### 3. Start the NestJS backend
-Open a **new terminal tab**:
+4. Start the NestJS backend
 ```bash
 cd api
 yarn install
 yarn start
 ```
-📍 The NestJS server runs on: `http://localhost:3000`
+👍 Leave this running in a terminal tab
+Open a new terminal to start the next step.
 
-### 4. Start the Next.js frontend
-Open a **third terminal tab**:
+5. Start the Next.js frontend
 ```bash
 cd sites/chatbot
 yarn install
 yarn dev
 ```
-Visit: `http://localhost:3000` to chat with the bot
+👍 Leave this running in a terminal tab
+Visit: `http://localhost:3000`
 
-## 📄 Notes
-* Static RAG context lives in: `context/affordable-housing.md`
-* API route (NestJS): `POST /chatbot`
-* Microservice route (FastAPI): `POST /generate`
+## ▶️ Usage Example
 
----
+Once all three services are running, visit `http://localhost:3000` and interact with the chatbot by asking affordable housing questions.
 
+## 📊 Project Structure
 
+```
+.
+├── agile_plan.md
+├── api/
+│   ├── dist/
+│   ├── eslint.config.mjs
+│   ├── nest-cli.json
+│   ├── node_modules/
+│   ├── package.json
+│   ├── README.md
+│   ├── src/
+│   ├── test/
+│   ├── tsconfig.build.json
+│   ├── tsconfig.json
+│   └── yarn.lock
+├── check_list.md
+├── completed_check_list.md
+├── context/
+│   └── affordable-housing.md
+├── contributing.md
+├── ethics_disclaimer.md
+├── initial-issues.md
+├── python-llm-service/
+│   ├── __pycache__/
+│   ├── app.py
+│   ├── rag_utils.py
+│   ├── requirements.txt
+│   └── venv/
+├── README.md
+├── sites/
+│   └── chatbot/
+└── structure.txt
+```
+
+## 📄 License
+
+This project is open source and available under the MIT License.
 
