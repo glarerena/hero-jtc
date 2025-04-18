@@ -15,11 +15,10 @@
   display: flex;
   flex-direction: column;
   overflow: hidden; /* Hide any overflow */
- }
- 
- 
- /* Minimized state */
- .chatboxContainer.minimized {
+}
+  
+/* Minimized state */
+.chatboxContainer.minimized {
   width: 250px; /* Minimized width */
   height: 40px; /* Minimized height, making it more compact */
   padding: 0.5rem; /* Reduced padding when minimized */
@@ -28,14 +27,13 @@
   display: flex;
   align-items: center; /* Vertically center content inside minimized box */
   justify-content: space-between; /* Space out "Bloom Assist" text and the minimize button */
- }
- 
- 
- /* Header for the minimize button */
- .header {
+}
+  
+/* Header for the minimize button */
+.header {
   display: flex;
   justify-content: flex-end; /* Align the button to the right */
- }
+}
 
 /* Header title under the minimize button */
 .headerBar {
@@ -48,9 +46,9 @@
   border-radius: 8px;
   text-align: center;
 }
- 
- /* Minimize button styling */
- .minimizeButton {
+  
+/* Minimize button styling */
+.minimizeButton {
   background: none;
   border: none;
   color: white;
@@ -59,26 +57,23 @@
   margin-bottom: 0rem;
   padding-top: 0rem;
   padding-bottom: 0rem;
- }
- 
- 
- .chatContent {
+}
+  
+.chatContent {
   flex-grow: 1; /* This ensures it takes the available space */
   overflow-y: auto; /* Allow scrolling if content overflows */
   margin-bottom: 0.5rem; /* Add some space between messages and input */
- }
- 
- 
- .form {
+}
+  
+.form {
   display: flex;
   justify-content: space-between;
   gap: rem;
   margin-top: 0.3rem;
   align-items: stretch;
- }
- 
- 
- .input {
+}
+  
+.input {
   flex: 1;
   padding: 0.5rem;
   border: 1px solid white;
@@ -88,10 +83,9 @@
   color: #195177;
   margin-bottom: 0;
   background-color: white;
- }
- 
- 
- .button {
+}
+  
+.button {
   padding: 0.5rem;
   background-color: white;
   color: #195177;
@@ -101,54 +95,56 @@
   cursor: pointer;
   height: 100%; /* Makes the button the same height as the input field */
   margin: 0;
- }
- 
- 
- .button:hover {
+}
+  
+.button:hover {
   background-color: #e0e0e0;
- }
- 
- 
- .response {
+}
+  
+.response {
   background-color: white;
   color: #195177;
   padding: 1rem;
   border-radius: 12px;
   font-size: 14px; /* Smaller font size for the response */
   white-space: pre-wrap;
- }
- 
- 
- .loading {
+  word-break: break-word; /* Add this to handle long URLs */
+  overflow-wrap: break-word; /* Add this for better text wrapping */
+}
+
+/* Add this new style for links in the response */
+.response a {
+  color: #0066cc; /* Blue link color for visibility */
+  text-decoration: underline;
+  word-break: break-all; /* Forces breaking for very long URLs */
+}
+  
+.loading {
   color: #e0e0e0;
   font-style: italic;
- }
- 
- 
- .error {
+}
+  
+.error {
   color: #ffcccc;
- }
- 
- 
- /* Minimized input field styling */
- .minimizedContent {
+}
+  
+/* Minimized input field styling */
+.minimizedContent {
   display: flex;
   justify-content: center; /* Center input in minimized state */
   align-items: center;
   margin-top: 0rem;
- }
- 
- 
- /* Minimized placeholder text */
- .minimizedText {
+}
+  
+/* Minimized placeholder text */
+.minimizedText {
   color: white;
   font-size: 16px;
   font-weight: 600;
- }
- 
- 
- /* Styling for the Bloom Assist button in minimized state */
- .bloomAssistButton {
+}
+  
+/* Styling for the Bloom Assist button in minimized state */
+.bloomAssistButton {
   background-color: #195177;
   color: white;
   border: none;
@@ -157,5 +153,36 @@
   font-size: 14px;
   font-weight: 600;
   cursor: pointer;
- }
- 
+}
+/* Mobile styling */
+@media (max-width: 250px) {
+  .chatboxContainer {
+    width: 60vw; /* Responsive width on small screens */
+    bottom: 1rem;
+    right: 1rem;
+    left: 1rem;
+    max-height: 70vh;
+    border-radius: 12px;
+  }
+
+  .chatboxContainer.minimized {
+    width: 60vw;
+    height: 50px;
+    padding: 0.5rem;
+  }
+
+  .input {
+    font-size: 12px;
+    padding: 0.4rem;
+  }
+
+  .button {
+    font-size: 12px;
+    padding: 0.4rem;
+  }
+
+  .response {
+    font-size: 13px;
+    padding: 0.8rem;
+  }
+}

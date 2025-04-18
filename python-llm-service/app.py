@@ -17,10 +17,11 @@ async def generate_response(request: Request):
     data = await request.json()
     message = data.get("message", "")
     
-    # Get relevant context (static for now)
+    # Get relevant context (live housing listings)
     context = get_context(message)
 
-    # Combine it into a basic RAG-like reply
+    # ✅ Return full response, no truncation
     return {
-        "response": f"[RAG Bot Reply] Based on what I found:\n\n{context[:300]}..."
+        "response": context
     }
+
