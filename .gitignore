@@ -1,0 +1,34 @@
+# Node & NestJS
+node_modules/
+dist/
+.env
+*.log
+
+# Next.js
+.next/
+out/
+
+# Yarn
+.yarn/
+.yarnrc.yml
+yarn-error.log
+
+# Python
+__pycache__/
+*.pyc
+*.pyo
+venv/
+
+# Windows system files
+Thumbs.db
+Desktop.ini
+
+# Mac system files
+.DS_Store
+
+# IDE/editor settings (optional)
+.vscode/
+.idea/
+
+# Misc
+*.swp  # vim swap files
