@@ -1,27 +1,34 @@
-# Python cache and bytecode
-__pycache__/
-*.py[cod]
-*.pyo
-
-# Virtual environments
-.env/
-.venv/
-env/
-venv/
-
-# Environment variable files
-*.env
-
-# VS Code settings
-.vscode/
-
-# macOS system files
-.DS_Store
-
-# Logs
+# Node & NestJS
+node_modules/
+dist/
+.env
 *.log
 
-# Node.js (frontend)
-node_modules/
-yarn-debug.log*
-yarn-error.log*
+# Next.js
+.next/
+out/
+
+# Yarn
+.yarn/
+.yarnrc.yml
+yarn-error.log
+
+# Python
+__pycache__/
+*.pyc
+*.pyo
+venv/
+
+# Windows system files
+Thumbs.db
+Desktop.ini
+
+# Mac system files
+.DS_Store
+
+# IDE/editor settings (optional)
+.vscode/
+.idea/
+
+# Misc
+*.swp  # vim swap files

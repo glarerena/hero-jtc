@@ -7,4 +7,3 @@ import { ChatbotService } from './chatbot/chatbot.service';
   providers: [ChatbotService],
 })
 export class AppModule {}
-
