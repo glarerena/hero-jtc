@@ -40,7 +40,7 @@ A single-turn Retrieval-Augmented Generation (RAG) chatbot designed to assist fr
 
 1. Clone the repository
 ```bash
-git clone https://github.com/your-username/jtc-capstone-2025.git
+git clone https://github.com/glarerena/jtc-capstone-2025.git
 cd jtc-capstone-2025
 ```
 
