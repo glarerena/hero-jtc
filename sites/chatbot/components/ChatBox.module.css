@@ -3,23 +3,37 @@
   position: fixed;
   bottom: 1rem;
   right: 1rem;
-  width: 300px; /* Width of the chatbot */
-  max-height: 700px; /* Optional: Limit height */
-  background-color: rgb(25, 81, 119); /* Chatbox background color */
+  width: 350px;
+  max-height: 700px;
+  background-color: rgb(25, 81, 119);
   color: white;
-  border-radius: 16px; /* Round corners of the entire box */
-  padding: 0.5rem; /* Padding around the content */
-  box-shadow: 0 8px 20px rgba(0, 0, 0, 0.2); /* Optional: adds shadow */
+  border-radius: 16px;
+  padding: 0.5rem;
+  box-shadow: 0 8px 20px rgba(0, 0, 0, 0.2);
   font-family: "Inter", sans-serif;
   z-index: 9999;
   display: flex;
   flex-direction: column;
-  overflow: hidden; /* Hide any overflow */
+  overflow: hidden;
+  transition: all 0.3s ease-in-out; /* Smooth transition between states */
 }
-  
+
+/* Maximized (Centered) State */
+.chatboxContainer.maximized {
+  top: 50%;
+  left: 50%;
+  bottom: auto;
+  right: auto;
+  transform: translate(-50%, -50%);
+  width: 85vw;
+  max-width: 600px;
+  height: 85vh;
+  padding: 1rem;
+}
+
 /* Minimized state */
 .chatboxContainer.minimized {
-  width: 250px; /* Minimized width */
+  width: 350px; /* Minimized width */
   height: 40px; /* Minimized height, making it more compact */
   padding: 0.5rem; /* Reduced padding when minimized */
   overflow: hidden; /* Hide content when minimized */
@@ -27,6 +41,7 @@
   display: flex;
   align-items: center; /* Vertically center content inside minimized box */
   justify-content: space-between; /* Space out "Bloom Assist" text and the minimize button */
+  font-size: 20px;
 }
   
 /* Header for the minimize button */
@@ -38,10 +53,9 @@
 /* Header title under the minimize button */
 .headerBar {
   padding: 0.1rem;
-  margin-top: 0rem; /* Creates space under the button */
   background-color: #195177;
   color: white;
-  font-size: 16px;
+  font-size: 22px;
   font-weight: 600;
   border-radius: 8px;
   text-align: center;
@@ -78,7 +92,7 @@
   padding: 0.5rem;
   border: 1px solid white;
   border-radius: 8px;
-  font-size: 14px;
+  font-size: 16px;
   font-family: inherit;
   color: #195177;
   margin-bottom: 0;
@@ -106,7 +120,7 @@
   color: #195177;
   padding: 1rem;
   border-radius: 12px;
-  font-size: 14px; /* Smaller font size for the response */
+  font-size: 16px; /* Smaller font size for the response */
   white-space: pre-wrap;
   word-break: break-word; /* Add this to handle long URLs */
   overflow-wrap: break-word; /* Add this for better text wrapping */
@@ -133,7 +147,8 @@
   display: flex;
   justify-content: center; /* Center input in minimized state */
   align-items: center;
-  margin-top: 0rem;
+  height: 100%;         /* Ensure it fills the minimized box */
+  width: 100%; 
 }
   
 /* Minimized placeholder text */
@@ -148,16 +163,19 @@
   background-color: #195177;
   color: white;
   border: none;
-  padding: 0.5rem 1rem;
+  padding: 0.5rem;
   border-radius: 8px;
-  font-size: 14px;
+  font-size: 20px;
   font-weight: 600;
   cursor: pointer;
+  display: flex;
+  align-items: center;    /* vertical centering */
+  justify-content: center; /* horizontal centering */
 }
 /* Mobile styling */
 @media (max-width: 250px) {
   .chatboxContainer {
-    width: 60vw; /* Responsive width on small screens */
+    width: 90vw; /* Responsive width on small screens */
     bottom: 1rem;
     right: 1rem;
     left: 1rem;
@@ -177,12 +195,12 @@
   }
 
   .button {
-    font-size: 12px;
+    font-size: 15px;
     padding: 0.4rem;
   }
 
   .response {
-    font-size: 13px;
+    font-size: 15px;
     padding: 0.8rem;
   }
 }

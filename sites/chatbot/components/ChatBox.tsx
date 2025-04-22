@@ -25,7 +25,7 @@ export default function ChatBox() {
 
       const data = await res.json();
       setResponse(data.response);
-    } catch (err) {
+    } catch {
       setError("Failed to fetch response.");
     } finally {
       setLoading(false);
@@ -38,7 +38,7 @@ export default function ChatBox() {
   };
 
   return (
-    <div className={`${styles.chatboxContainer} ${isMinimized ? styles.minimized : ""}`}>
+    <div className={`${styles.chatboxContainer} ${isMinimized ? styles.minimized : styles.maximized}`}>
       {/* Header */}
       <div className={styles.header}>
         {!isMinimized && (
@@ -69,7 +69,7 @@ export default function ChatBox() {
             <div className={styles.response}>
               <ReactMarkdown
                 components={{
-                  a: ({ node, ...props }) => (
+                  a: (props) => (
                     <a {...props} target="_blank" rel="noopener noreferrer" />
                   )
                 }}
