@@ -162,7 +162,7 @@
 .bloomAssistButton {
   background-color: #195177;
   color: white;
-  border: 1rem;
+  border: none;
   padding: 0.5rem;
   border-radius: 8px;
   font-size: 20px;
