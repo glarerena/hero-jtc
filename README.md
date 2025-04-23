@@ -11,8 +11,6 @@ A conversational Retrieval-Augmented Generation (RAG) chatbot designed to help f
 
 ## ✨ Features
 
-## ✨ Features
-
 * Retrieval-Augmented Generation (RAG) using markdown-based static context  
 * FastAPI-powered Python backend with LLM microservice for response generation  
 * Real-time data access via Bloom Housing API (Swagger UI) for live housing listings  
