@@ -1,126 +1,85 @@
-
 # Bloom Assist Chatbot
 
-=======
-# 🛠️ Capstone Merge Branch
+A conversational Retrieval-Augmented Generation (RAG) chatbot designed to help frontline workers and individuals access affordable housing resources.
 
-This is the **staging branch** for our Capstone MVP project.
-
-We will use this branch when the time comes to **combine everyone's code** into a single, testable version of the chatbot.
-
-Please do **not push directly** to this branch unless you are handling an approved merge from your assigned branch.
-
-## 🔁 Workflow
-
-1. Each team member works only in their assigned branch.
-2. When your code is ready, notify the lead for review.
-3. Your branch will be merged into `merge` for integration testing.
-4. After successful testing, we will push to `main`.
-
-Let’s keep things clean and organized. 🚀
-
-A single-turn Retrieval-Augmented Generation (RAG) chatbot designed to assist frontline workers and individuals in accessing affordable housing resources.
-
-## 💻 Technologies and Frameworks Used
+## 💻 Technologies
 
 * **Frontend:** Next.js (sites/chatbot)
 * **Backend:** NestJS (api/)
 * **Microservice:** FastAPI (python-llm-service/)
-* **Database:** ChromaDB (for vector storage)
+* **Database:** ChromaDB (vector storage)
 * **Other:** Markdown-based static content, Yarn, Python 3.x
 
 ## ✨ Features
 
-* Conversational UI for housing-related questions
+* Intuitive conversational interface for housing-related inquiries
 * Static RAG context integration from markdown files
-* Microservice architecture
-* Framework integration
+* Microservice architecture for scalability
+* Seamless framework integration
 
-## 🛠️ Installation and Setup Instructions
+## 🛠️ Installation
 
-1. Clone the repository
+1. **Clone the repository**
 ```bash
 git clone https://github.com/glarerena/jtc-capstone-2025.git
 cd jtc-capstone-2025
 ```
 
-2. Go into python-llm-service folder and create/activate a virtual environment (optional)
+2. **Set up Python LLM service**
 ```bash
 cd python-llm-service
 python3 -m venv venv
-source venv/bin/activate
-```
-
-3. Go into python-llm-service folder and install requirements
-```bash
-cd python-llm-service
+source venv/bin/activate  # For Windows: venv\Scripts\activate
 pip install -r requirements.txt
 uvicorn app:app --reload --port 8000
 ```
-👍 Leave this running in a terminal tab
-Open a new terminal to start the next step.
+Leave this running in a terminal tab.
 
-4. Start the NestJS backend
+3. **Start the NestJS backend**
+In a new terminal:
 ```bash
 cd api
 yarn install
 yarn start
 ```
-👍 Leave this running in a terminal tab
-Open a new terminal to start the next step.
+Leave this running in a terminal tab.
 
-5. Start the Next.js frontend
+4. **Launch the Next.js frontend**
+In a new terminal:
 ```bash
 cd sites/chatbot
 yarn install
 yarn dev
 ```
-👍 Leave this running in a terminal tab
-Visit: `http://localhost:3000`
+When all services are running, visit: `http://localhost:3000`
 
-## ▶️ Usage Example
+## ▶️ Usage
 
-Once all three services are running, visit `http://localhost:3000` and interact with the chatbot by asking affordable housing questions.
+Visit `http://localhost:3000` in your browser and interact with the chatbot by asking questions about affordable housing. The system uses RAG technology to provide accurate, context-aware responses based on housing resource information.
 
 ## 📊 Project Structure
 
 ```
 .
-├── agile_plan.md
-├── api/
-│   ├── dist/
-│   ├── eslint.config.mjs
-│   ├── nest-cli.json
-│   ├── node_modules/
-│   ├── package.json
-│   ├── README.md
-│   ├── src/
-│   ├── test/
-│   ├── tsconfig.build.json
-│   ├── tsconfig.json
-│   └── yarn.lock
-├── check_list.md
-├── completed_check_list.md
-├── context/
-│   └── affordable-housing.md
-├── contributing.md
-├── ethics_disclaimer.md
-├── initial-issues.md
-├── python-llm-service/
-│   ├── __pycache__/
-│   ├── app.py
-│   ├── rag_utils.py
-│   ├── requirements.txt
-│   └── venv/
-├── README.md
-├── sites/
-│   └── chatbot/
-└── structure.txt
+├── api/                          # NestJS backend service
+│   ├── src/                      # Source code
+│   ├── test/                     # Testing files
+│   └── ...
+├── context/                      # Knowledge base markdown files
+│   └── affordable-housing.md     # Housing resources information
+├── python-llm-service/           # FastAPI microservice for LLM integration
+│   ├── app.py                    # Main application file
+│   ├── rag_utils.py              # RAG utility functions
+│   └── requirements.txt          # Python dependencies
+├── sites/                        # Frontend applications
+│   └── chatbot/                  # Next.js chatbot interface
+├── agile_plan.md                 # Project planning documentation
+├── contributing.md               # Contribution guidelines
+├── ethics_disclaimer.md          # Ethics statement
+└── README.md                     # This file
 ```
+
 
 ## 📄 License
 
 This project is open source and available under the MIT License.
-
-
-
