@@ -7,15 +7,16 @@ A conversational Retrieval-Augmented Generation (RAG) chatbot designed to help f
 * **Frontend:** Next.js (sites/chatbot)
 * **Backend:** NestJS (api/)
 * **Microservice:** FastAPI (python-llm-service/)
-* **Database:** ChromaDB (vector storage)
 * **Other:** Markdown-based static content, Yarn, Python 3.x
 
 ## ✨ Features
 
-* Intuitive conversational interface for housing-related inquiries
-* Static RAG context integration from markdown files
-* Microservice architecture for scalability
-* Seamless framework integration
+## ✨ Features
+
+* Retrieval-Augmented Generation (RAG) using markdown-based static context  
+* FastAPI-powered Python backend with LLM microservice for response generation  
+* Real-time data access via Bloom Housing API (Swagger UI) for live housing listings  
+* Modular architecture designed for easy scaling and seamless integration  
 
 ## 🛠️ Installation
 
