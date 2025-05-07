@@ -1,44 +1,52 @@
-import { useState } from "react";
-import ReactMarkdown from "react-markdown";
-import styles from "./ChatBox.module.css"; // Keep your custom styles
+import { useState } from "react"
+import ReactMarkdown from "react-markdown"
+import styles from "./Chatbox.module.css" // Keep your custom styles
 
 export default function ChatBox() {
-  const [question, setQuestion] = useState("");
-  const [response, setResponse] = useState("");
-  const [loading, setLoading] = useState(false);
-  const [error, setError] = useState("");
-  const [isMinimized, setIsMinimized] = useState(false);
+  console.log("✅ Chatbox component is rendering...")
+  const [question, setQuestion] = useState("")
+  const [response, setResponse] = useState("")
+  const [loading, setLoading] = useState(false)
+  const [error, setError] = useState("")
+  const [isMinimized, setIsMinimized] = useState(true)
 
   const handleSubmit = async (e: React.FormEvent) => {
-    e.preventDefault();
-    setLoading(true);
-    setError("");
+    e.preventDefault()
+    setLoading(true)
+    setError("")
 
     try {
-      const res = await fetch("http://localhost:3000/chatbot", {
+      const res = await fetch("http://localhost:3005/chatbot", {
         method: "POST",
         headers: { "Content-Type": "application/json" },
         body: JSON.stringify({ message: question }),
-      });
+      })
 
-      if (!res.ok) throw new Error("Something went wrong");
+      if (!res.ok) throw new Error("Something went wrong")
 
-      const data = await res.json();
-      setResponse(data.response);
+      const data = await res.json()
+      setResponse(data.response)
     } catch {
-      setError("Failed to fetch response.");
+      setError("Failed to fetch response.")
     } finally {
-      setLoading(false);
-      setQuestion("");
+      setLoading(false)
+      setQuestion("")
     }
-  };
+  }
 
   const toggleMinimize = () => {
-    setIsMinimized(!isMinimized);
-  };
+    if (isMinimized) {
+      setResponse(
+        "👋 Hello! I'm Bloom Assist — your guide to affordable housing listings in the Bay Area.\n\nHow can I help you today?"
+      )
+    }
+    setIsMinimized(!isMinimized)
+  }
 
   return (
-    <div className={`${styles.chatboxContainer} ${isMinimized ? styles.minimized : styles.maximized}`}>
+    <div
+      className={`${styles.chatboxContainer} ${isMinimized ? styles.minimized : styles.maximized}`}
+    >
       {/* Header */}
       <div className={styles.header}>
         {!isMinimized && (
@@ -48,11 +56,7 @@ export default function ChatBox() {
         )}
       </div>
 
-      {!isMinimized && (
-        <div className={styles.headerBar}>
-          Bloom Assist Chatbot
-        </div>
-      )}
+      {!isMinimized && <div className={styles.headerBar}>Bloom Assist Chatbot</div>}
 
       {isMinimized && (
         <div className={styles.minimizedContent}>
@@ -70,8 +74,10 @@ export default function ChatBox() {
               <ReactMarkdown
                 components={{
                   a: (props) => (
-                    <a {...props} target="_blank" rel="noopener noreferrer" />
-                  )
+                    <a {...props} target="_blank" rel="noopener noreferrer">
+                      {props.children || "Link"}
+                    </a>
+                  ),
                 }}
               >
                 {response}
@@ -94,11 +100,12 @@ export default function ChatBox() {
             onChange={(e) => setQuestion(e.target.value)}
             required
           />
-          <button className={styles.button} type="submit">Send</button>
+          <button className={styles.button} type="submit">
+            Send
+          </button>
         </form>
       )}
     </div>
-  );
+  )
 }
-
 
