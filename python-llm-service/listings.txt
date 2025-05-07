@@ -1,0 +1,57 @@
+This is a high level overview of the sample listings Bloom has.
+https://bloom.exygy.dev/listings
+
+Some listings have apply online, PDF applications, or just contact information. 
+
+
+1. Test Listing, PDF Download application and mail in address
+https://bloom.exygy.dev/listing/f3ba0555-e9fa-4f12-a1a1-d11a8c82293d/test_listing_399_blossom_hill_san_jose_ca
+
+2. District Demo Copy, PDF Download, or pick up and application
+https://bloom.exygy.dev/listing/16815545-3a1a-4639-b2e9-94206a16ba6a/district_demo_copy_64_grinnell_dr_west_glacier_mt
+
+3. Testing Design Lottery Copy, Apply Online, PDF Application, or pick up an application
+https://bloom.exygy.dev/listing/d699ceb2-f59c-4459-85e2-5a649915ecfe/testing_design_lottery_copy_401_market_street_san_francisco_ca
+
+Application Link:
+https://bloom.exygy.dev/applications/start/choose-language?listingId=d699ceb2-f59c-4459-85e2-5a649915ecfe
+
+4. Lottery Demo, Apply Online, and Download Results
+https://bloom.exygy.dev/listing/2d805d18-1586-4eef-b6e0-da3612c88951/lottery_demo_434_bennington_ct_saline_mi
+
+Application Link:
+https://bloom.exygy.dev/applications/start/choose-language?listingId=2d805d18-1586-4eef-b6e0-da3612c88951
+
+5. Testing Design - Emily, Apply Online, PDF Download Application, or pick up application
+https://bloom.exygy.dev/listing/ca935750-769d-4062-a0b7-d52005c3aa74/testing_design_emily_64_grinnell_dr_west_glacier_mt
+
+Application Link:
+https://bloom.exygy.dev/applications/start/choose-language?listingId=ca935750-769d-4062-a0b7-d52005c3aa74
+
+6. Testing Design Lottery, Leasing Agent information
+https://bloom.exygy.dev/listing/46e3154b-3434-4e2b-aa34-aed53a53e509/testing_design_lottery_401_market_street_san_francisco_ca
+
+7. Testing Desgin No App, Leasing Agent Information
+https://bloom.exygy.dev/listing/f05f0551-b0f7-4da8-8694-8d231c82603c/testing_design_no_app_401_market_street_san_francisco_ca
+
+8. District View Apartments, PDF Download Application
+https://bloom.exygy.dev/listing/f4b93e17-d60d-49a0-af85-d38c18e4389c/district_view_apartments_64_grinnell_dr_west_glacier_mt
+
+9. Test Another Lottery, Application Online, Waitlist status with slot amounts listed
+https://bloom.exygy.dev/listing/cf908bad-5e0d-41ce-b688-f4be27408449/test_another_lottery_1233_w_main_chicago_il
+
+Application Link:
+https://bloom.exygy.dev/applications/start/choose-language?listingId=cf908bad-5e0d-41ce-b688-f4be27408449
+
+10. Test Home Type, Leasing Agent Information
+https://bloom.exygy.dev/listing/faa77899-fefa-44a3-b515-eb9634361bf1/test_home_type_4014_n_main_street_warren_mi
+
+
+
+
+
+
+
+
+
+
