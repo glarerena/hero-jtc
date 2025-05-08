@@ -1,12 +1,17 @@
 # rag_utils.py
 
 from listings import get_live_housing_listings, format_listings
+from application import get_housing_response
 
 def get_context(question: str) -> str:
     """
     Processes the user's question and returns the appropriate response.
     """
     question = question.lower().strip()
+
+    # Check for application-related queries first
+    if "apply" in question or "application" in question:
+        return get_housing_response(question)
 
     # Respond to listing requests
     if "listings" in question:
