@@ -1,5 +1,3 @@
-// sites/chatbot/tailwind.config.js
-const bloomTheme = require('/Users/khalisahkhan/Documents/Flagship/Captsone/bloom/sites/public/tailwind.config.js'); // Adjust path based on your actual location of bloom-tailwind-config.js
 
 module.exports = {
     content: [
@@ -11,7 +9,7 @@ module.exports = {
     theme: {
       extend: {
         colors: {
-          primary: "#3490dc", // Example: customize colors
+          primary: "#0077da", // Example: customize colors
         },
         fontFamily: {
           sans: ['Arial', 'sans-serif'], // Example: add custom font
