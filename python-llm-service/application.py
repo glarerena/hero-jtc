@@ -20,7 +20,7 @@ def is_housing_related(question: str) -> bool:
     """
     Checks if the question is related to housing.
     """
-    housing_keywords = ["listings", "housing", "apartments", "rentals", "home", "properties", "houses", "rent"]
+    housing_keywords = ["listings", "listing", "housing", "housing", "apartments", "apartment", "rentals", "rental", "home", "property", "properties", "houses", "rent"]
     return any(keyword in question.lower() for keyword in housing_keywords)
 
 def get_housing_response(question: str) -> str:
