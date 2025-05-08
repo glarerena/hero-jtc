@@ -1,0 +1,16 @@
+// globals.scss
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+$primary-color: #3490dc;
+
+.button {
+  background-color: $primary-color;
+  padding: 0rem;
+  border-radius: 4px;
+  color: white;
+}
+.body {
+  background-color: black;
+}

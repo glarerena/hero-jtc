@@ -1,6 +1,6 @@
 import { useState } from "react"
 import ReactMarkdown from "react-markdown"
-import styles from "./Chatbox.module.css" // Keep your custom styles
+import styles from "./Chatbox.module.scss" // Keep your custom styles
 
 export default function ChatBox() {
   console.log("✅ Chatbox component is rendering...")
@@ -61,7 +61,7 @@ export default function ChatBox() {
       {isMinimized && (
         <div className={styles.minimizedContent}>
           <button className={styles.bloomAssistButton} onClick={toggleMinimize}>
-            Bloom Assist
+            BLOOM ASSISTANT
           </button>
         </div>
       )}
