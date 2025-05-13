@@ -2,10 +2,15 @@ import { useState } from "react"
 import ReactMarkdown from "react-markdown"
 import styles from "./Chatbox.module.scss" // Keep your custom styles
 
+interface Message {
+  role: 'user' | 'assistant';
+  content: string;
+}
+
 export default function ChatBox() {
   console.log("✅ Chatbox component is rendering...")
   const [question, setQuestion] = useState("")
-  const [response, setResponse] = useState("")
+  const [messages, setMessages] = useState<Message[]>([])
   const [loading, setLoading] = useState(false)
   const [error, setError] = useState("")
   const [isMinimized, setIsMinimized] = useState(true)
@@ -15,17 +20,28 @@ export default function ChatBox() {
     setLoading(true)
     setError("")
 
+    // Add user message to chat history
+    const userMessage: Message = { role: 'user', content: question }
+    const updatedMessages = [...messages, userMessage]
+    setMessages(updatedMessages)
+
     try {
       const res = await fetch("http://localhost:3005/chatbot", {
         method: "POST",
         headers: { "Content-Type": "application/json" },
-        body: JSON.stringify({ message: question }),
+        body: JSON.stringify({ 
+          message: question,
+          history: messages // Send conversation history
+        }),
       })
 
       if (!res.ok) throw new Error("Something went wrong")
 
       const data = await res.json()
-      setResponse(data.response)
+      
+      // Add assistant response to chat history
+      const assistantMessage: Message = { role: 'assistant', content: data.response }
+      setMessages([...updatedMessages, assistantMessage])
     } catch {
       setError("Failed to fetch response.")
     } finally {
@@ -36,9 +52,11 @@ export default function ChatBox() {
 
   const toggleMinimize = () => {
     if (isMinimized) {
-      setResponse(
-        "👋 Hello! I'm Bloom Assist — your guide to affordable housing listings in the Bay Area.\n\nHow can I help you today?"
-      )
+      // Initialize chat with welcome message
+      setMessages([{
+        role: 'assistant',
+        content: "👋 Hello! I'm Bloom Assist — your guide to affordable housing listings in the Bay Area.\n\n⚠️ *This chatbot is an experimental tool. Please verify all information with official housing resources before making decisions.*\n\nHow can I help you today?"
+      }])
     }
     setIsMinimized(!isMinimized)
   }
@@ -69,8 +87,11 @@ export default function ChatBox() {
       {/* Chat Content */}
       {!isMinimized && (
         <div className={styles.chatContent}>
-          {response && (
-            <div className={styles.response}>
+          {messages.map((message, index) => (
+            <div 
+              key={index} 
+              className={`${styles.message} ${message.role === 'user' ? styles.userMessage : styles.assistantMessage}`}
+            >
               <ReactMarkdown
                 components={{
                   a: (props) => (
@@ -80,7 +101,14 @@ export default function ChatBox() {
                   ),
                 }}
               >
-                {response}
+                {message.content}
+              </ReactMarkdown>
+            </div>
+          ))}
+          {messages.length >= 10 && (
+            <div className={`${styles.message} ${styles.assistantMessage}`}>
+              <ReactMarkdown>
+                {"I've reached my conversation limit. To continue, please click the minimize button (-) and then click 'BLOOM ASSISTANT' to start a new chat. Thank you for using Bloom Assist!"}
               </ReactMarkdown>
             </div>
           )}
@@ -95,12 +123,17 @@ export default function ChatBox() {
           <input
             className={styles.input}
             type="text"
-            placeholder="Ask a question..."
+            placeholder={messages.length >= 10 ? "Click minimize (-) to start over" : "Ask a question..."}
             value={question}
             onChange={(e) => setQuestion(e.target.value)}
             required
+            disabled={messages.length >= 10}
           />
-          <button className={styles.button} type="submit">
+          <button 
+            className={styles.button} 
+            type="submit"
+            disabled={messages.length >= 10}
+          >
             Send
           </button>
         </form>
