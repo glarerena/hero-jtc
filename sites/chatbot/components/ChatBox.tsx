@@ -1,4 +1,4 @@
-import { useState } from "react"
+import { useState, useRef, useEffect } from "react"
 import ReactMarkdown from "react-markdown"
 import styles from "./Chatbox.module.scss" // Keep your custom styles
 
@@ -14,6 +14,11 @@ export default function ChatBox() {
   const [loading, setLoading] = useState(false)
   const [error, setError] = useState("")
   const [isMinimized, setIsMinimized] = useState(true)
+
+  const chatEndRef = useRef<HTMLDivElement | null>(null)
+  useEffect(() => {
+    chatEndRef.current?.scrollIntoView({ behavior: "smooth"})
+  }, [messages])
 
   const handleSubmit = async (e: React.FormEvent) => {
     e.preventDefault()
@@ -114,6 +119,7 @@ export default function ChatBox() {
           )}
           {loading && <p className={styles.loading}>Loading...</p>}
           {error && <p className={styles.error}>{error}</p>}
+          <div ref={chatEndRef} />
         </div>
       )}
 
