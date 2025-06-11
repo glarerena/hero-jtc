@@ -1,292 +1,151 @@
-// Variables
-$primary-color: #0077da;
-$white: white;
-$hover: #0067be;
-$light-gray: #e0e0e0;
-$error-color: #ffcccc;
-$link-color: #0066cc;
-$font-family: "Inter", sans-serif;
-$border-radius: 3px;
-$box-shadow: 0 8px 20px rgba(0, 0, 0, 0.2);
-$link-bg: #e6f3ff;  // Light blue background for links
-$link-border: #0077da;  // Blue border for links
-$text-color: #000000;  // Pure black for regular text
+$primary:      #684996; // deep purple
+$accent:       #f9ca48; // sunny yellow
+$bg-cream:     #f2f1e9; // soft cream background
+$teal:         #8dafaf; // teal 
+$light:        #b9c3fa; // light purple
+$white:        #ffffff;
+$hover:        darken($accent, 5%);
+$border-radius: 6px;
+$box-shadow:   0 4px 12px rgba(0, 0, 0, 0.15);
 
-// Main container for the chatbot
-.chatboxContainer {
+.wrapper {
   position: fixed;
-  z-index: 9999;
-  font-family: $font-family;
-  transition: all 0.3s ease-in-out;
+  top: 50px;
+  right: 50px;
+  z-index: 1000;
 
-  &.maximized {
-    top: 40%;
-    left: 77%;
-    transform: translate(-50%, -50%);
-    width: 50vw; // 30% smaller width
-    max-width: 450px;
-    height: 50vh; // 30% smaller height
-    background-color: $primary-color;
-    color: $white;
+  .container {
+    width: 330px;
+    height: 450px;
+    background-color: $bg-cream;
+    border: 1px solid $primary;
     border-radius: $border-radius;
-    padding: 1rem;
     box-shadow: $box-shadow;
     display: flex;
     flex-direction: column;
+    color: #1e1e1e;
+    font-family: sans-serif;
     overflow: hidden;
-    border: 2px solid $hover;
   }
 
-  &.minimized {
-    position: fixed;
-    top: 3.5rem;
-    right: 2rem;
-    width: 220px;
-    height: 50px;
+  .header {
+    display: flex;
+    padding: 12px 12px;
+    background-color: $primary;
+    border: $primary;
+    color: $white;
+    font-weight: bold;
+    cursor: pointer;
+    user-select: none;
+    align-items: center;
+    justify-content: space-between;
+  }
+
+  .headerTitle {
+    flex: 1;                  // take up all available space
+    font-size: 1.1rem;
+    font-weight: bold;
+    cursor: pointer;
+  }
+
+  .headerIcon {
+    width: 60px;              // adjust as you like
+    height: 60px;
+    cursor: pointer;
+    margin-left: 12px;        // small gap from the title
+  }
+
+  .content {
+    flex: 1;
+    padding: 6px;
+    overflow-y: auto;
+
+    .message {
+      margin: 6px 0;
+      word-break: break-word;
+      max-width: 80%;
+      padding: 6px;
+      border-radius: $border-radius;
+      font-size: 16px;
+    
+    }
+    .userMessage {
+      background-color: $teal;
+      color: black;
+      align-self: flex-end;
+      font-size: 16px;
+      margin-left: auto;
+    }
+
+    .assistantMessage {
+      background-color: $light;
+      color: black;
+      align-self: flex-start;
+      font-size: 16px;
+      margin-right: auto;
+    }
+
+    .error {
+      color: red;
+      margin: 6px 0;
+    }
+  }
+
+  .inputArea {
+    padding: 12px;
+    border-top: 1px solid $primary;
+    display: flex;
+    gap: 8px;
+  }
+
+  .input {
+    flex: 1;
+    padding: 8px;
+    border: 1px solid $primary;
+    border-radius: $border-radius;
     background-color: $white;
-    color: $primary-color;
-    border: 1px solid $hover;
-    border-radius: 4px;
-    padding: 0rem;
+    color: #1e1e1e;
+    font-size: 16px;
+  }
+
+  .sendButton {
+    padding: 8px;
+    background-color: $primary;
+    color: $white;
+    border: none;
+    border-radius: $border-radius;
+    cursor: pointer;
+    font-weight: bold;
+
+    &:hover {
+      background-color: $hover;
+    }
+  }
+
+  .sendButton:disabled {
+    background-color: #ccc;
+    cursor: not-allowed;
+  }
+
+  .fab {
+    background-color: $bg-cream;
+    padding: 4px;
+    border-radius: 50%;
+    border: 2px solid $primary;
+    cursor: pointer;
+    box-shadow: $box-shadow;
     display: flex;
     align-items: center;
     justify-content: center;
-    font-size: 15px;
-    font-weight: normal;
-    cursor: pointer;
-    box-shadow: $box-shadow;
 
     &:hover {
-        background-color: $hover;
-        color: $white;
-      }
-
-    // Button inside minimized
-    .bloomAssistButton {
-        width: 220px;
-        height: 50px;
-        background-color: $white;
-        color: $primary-color;
-        border: 1px solid $hover;
-        border-radius: 4;
-        
-        font-size: 15px;
-        font-weight: normal;
-        cursor: pointer;
-        display: flex;
-        align-items: center;
-        justify-content: center;
-        transition: background-color 0.3s ease, color 0.3s ease;
-        letter-spacing: 1px; 
-        text-transform: uppercase;
-
-        &:hover {
-            background-color: $hover;
-            color: $white;
-        }
-        &:focus,
-        &:active {
-          box-shadow: 0 0 8px 2px white;
-        }
-    }
-  }
-}
-
-// Header for the minimize button
-.header {
-  display: flex;
-  justify-content: flex-end; // Align the button to the right
-  top: 2px;
-}
-
-// Header title inside chat
-.headerBar {
-  padding: 0.1rem;
-  background-color: $primary-color;
-  color: $white;
-  font-size: 22px;
-  font-weight: 600;
-  border-radius: $border-radius;
-  text-align: center;
-  letter-spacing: 1px;
-}
-
-// Minimize Button
-.minimizeButton {
-  background: none;
-  border: none;
-  color: $white;
-  font-size: 18px;
-  top: -10px;
-  cursor: pointer;
-}
-
-// Chat content (messages)
-.chatContent {
-  flex-grow: 1;
-  overflow-y: auto;
-  margin-bottom: .5rem;
-  border-radius: $border-radius;
-  display: flex;
-  flex-direction: column;
-  gap: 1rem;
-  padding: 1rem;
-  height: 80%;
-  color: #000000;  // Set base text color for all chat content
-  
-}
-
-// Message styles
-.message {
-  padding: 1rem;
-  border-radius: $border-radius;
-  font-size: 16px;
-  white-space: pre-wrap;
-  word-break: break-word;
-  overflow-wrap: break-word;
-  max-width: 100%;
-  line-height: 1.5;
-
-  p {
-    margin: 0 0 0.5rem 0;
-    &:last-child {
-      margin-bottom: 0;
+      background-color: $hover;
     }
   }
 
-  a {
-    color: $link-color;
-    text-decoration: none;
-  }
-}
-
-.userMessage {
-  background-color: $white;
-  color: #333;
-  align-self: flex-end;
-  border-radius: $border-radius;
-  box-shadow: 0 1px 2px rgba(0, 0, 0, 0.1);
-  padding: 1rem;
-  max-width: 100%;
-  margin-bottom: 0.5rem;
-  line-height: 1.5;
-  border: 2px solid $hover;
-}
-
-.assistantMessage {
-    background-color: $white;
-    color: #333;
-    align-self: flex-start;
-    border-radius: $border-radius;
-    box-shadow: 0 1px 2px rgba(0, 0, 0, 0.1);
-    padding: 1rem;
-    max-width: 100%;
-    margin-bottom: 0.5rem;
-    line-height: 1.5;
-    border: 2px solid $hover;
-
-  a {
-    color: $primary-color;
-    text-decoration: underline;
-    font-weight: 500;
-  }
-}
-
-// Form (input + button)
-.form {
-  display: flex;
-  gap: 0.3rem;
-  width: 100%;
-  margin-top: 0rem;
-  align-items: stretch;
-  padding: 0 1rem;
-  box-sizing: border-box;
-  margin-bottom: 1rem;
-}
-
-// Input Field
-.input {
-  flex: 1;
-  padding: 0.5rem;
-  border: 1px solid $white;
-  border-radius: $border-radius;
-  font-size: 16px;
-  font-family: inherit;
-  color: #333;
-  background-color: $white;
-  border: 2px solid $hover;
-  box-shadow: 0 1px 2px rgba(0, 0, 0, 0.1);
-}
-
-// Send Button
-.button {
-  padding: 0.3rem;
-  background-color: $white;
-  color: $primary-color;
-  border: 2px solid $hover;
-  border-radius: $border-radius;
-  font-weight: 600;
-  cursor: pointer;
-
-  &:hover {
-    background-color: $light-gray;
-  }
-}
-
-// Chatbot Response
-.response {
-  background-color: $white;
-  color: $primary-color;
-  padding: 0.8rem;
-  border-radius: $border-radius;
-  font-size: 16px;
-  white-space: pre-wrap;
-  word-break: break-word;
-  overflow-wrap: break-word;
-  border: 1px solid $hover;
-
-  a {
-    color: $link-color;
-    text-decoration: underline;
-    word-break: break-word;
-  }
-}
-
-// Loading Text
-.loading {
-  color: $light-gray;
-  font-style: italic;
-}
-
-// Error Text
-.error {
-  color: $error-color;
-}
-
-// Bloom Assistant Button inside minimized box
-.minimizedContent {
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  width: 100%;
-  height: 100%;
-}
-
-// Mobile Styles
-@media (max-width: 600px) {
-  .chatboxContainer.maximized {
-    width: 90vw;
-    height: 70vh; // Reduced height for smaller screens
-  }
-
-  .chatboxContainer.minimized {
-    width: 70vw;
-    height: 50px;
-  }
-
-  .input,
-  .button,
-  .response {
-    font-size: 14px;
+  .fabImage {
+    width: 90px;
+    height: 90px;
+    object-fit: contain;
   }
 }
