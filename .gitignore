@@ -46,3 +46,4 @@ developers_guide.md
 ethics_disclaimer.md
 project_update.md
 structure.txt
+python-llm-service/models/*.gguf
