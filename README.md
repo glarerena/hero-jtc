@@ -1,7 +1,7 @@
 # HERO Chatbot  
 **Housing Essential Resource Organization**
 
-<img src="purple_house.png" alt="HERO Favicon" width="32" />
+<img src="purple_house.png" alt="HERO Favicon" width="48" />
 
 A rebranded, user-focused **Retrieval-Augmented Generation (RAG)** chatbot  
 designed to help frontline workers and individuals quickly find  
