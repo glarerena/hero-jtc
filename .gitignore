@@ -3,6 +3,7 @@ node_modules/
 dist/
 .env
 *.log
+*.tsbuildinfo
 
 # Next.js
 .next/
@@ -19,6 +20,13 @@ __pycache__/
 *.pyo
 venv/
 
+# Build and cache
+.cache/
+coverage/
+build/
+tmp/
+temp/
+
 # Windows system files
 Thumbs.db
 Desktop.ini
@@ -26,9 +34,15 @@ Desktop.ini
 # Mac system files
 .DS_Store
 
-# IDE/editor settings (optional)
+# IDE/editor settings
 .vscode/
 .idea/
 
-# Misc
-*.swp  # vim swap files
+# Vim swap files
+*.swp
+
+# Internal project docs (keep repo small)
+developers_guide.md
+ethics_disclaimer.md
+project_update.md
+structure.txt
