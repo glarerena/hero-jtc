@@ -18,16 +18,23 @@ export default function ChatBox() {
   const [open, setOpen] = useState(false)
 
   const chatEndRef = useRef<HTMLDivElement | null>(null)
+  const inputRef = useRef<HTMLInputElement | null>(null)
+
   useEffect(() => {
     chatEndRef.current?.scrollIntoView({ behavior: "smooth"})
   }, [messages])
+
+  // Add effect to focus input when messages change
+  useEffect(() => {
+    if (!loading && inputRef.current) {
+      inputRef.current.focus()
+    }
+  }, [messages, loading])
 
   const handleSubmit = async (e: React.FormEvent) => {
     e.preventDefault()
     setLoading(true)
     setError("")
-
-
 
     // Add user message to chat history
     const userMessage: Message = { role: 'user', content: question }
@@ -69,10 +76,11 @@ export default function ChatBox() {
     }
     setOpen(!open)
   }
+
   const handleKeyDown = (e: React.KeyboardEvent<HTMLInputElement>) => {
     if (e.key === "Enter") {
       e.preventDefault();
-      handleSubmit(e as any); // or just call sendMessage logic directly
+      handleSubmit(e as any);
     }
   }
 
@@ -150,12 +158,14 @@ export default function ChatBox() {
 
           <form className={styles.inputArea} onSubmit={handleSubmit}>
             <input
+              ref={inputRef}
               className={styles.input}
               value={question}
               onChange={e => setQuestion(e.target.value)}
               onKeyDown={handleKeyDown}
               placeholder="How can I assist?"
               disabled={loading}
+              autoFocus
             />
             <button
               type="submit"

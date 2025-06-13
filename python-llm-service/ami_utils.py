@@ -1,4 +1,3 @@
-
 def handle_ami_logic(question: str) -> str:
     """
     Parses the user's income and provides AMI-based guidance.
@@ -20,18 +19,29 @@ def handle_ami_logic(question: str) -> str:
     # median income: 130600
     # moderate income 156750
 
-# 1) Check for empty or None
+    print("🔢 Processing AMI question:", question)  # Debug log
+
+    # 1) Check for empty or None
     if not question or not question.strip():
         return "Please enter your household income."
 
-    # 2) Clean the input (strip spaces, commas, dollar signs)
-    cleaned = question.strip().replace(",", "").lstrip("$")
+    # 2) Extract the number from the question
+    import re
+    # Look for numbers in the text, including those with commas and decimal points
+    numbers = re.findall(r'\$?\d+(?:,\d+)*(?:\.\d+)?', question)
+    if not numbers:
+        return "Sorry, I couldn't find an income amount in your question. Please include a specific number."
+    
+    # Take the first number found
+    cleaned = numbers[0].replace(",", "").lstrip("$")
+    print("🧹 Cleaned input:", cleaned)  # Debug log
 
     # 3) Try parsing as float (to handle decimals), then convert to int
     try:
         income_float = float(cleaned)
+        print("✅ Parsed income:", income_float)  # Debug log
     except ValueError:
-        return "Sorry, I couldn’t understand that income amount."
+        return "Sorry, I couldn't understand that income amount."
 
     # 4) Reject zero or negative incomes
     if income_float <= 0:
@@ -39,6 +49,7 @@ def handle_ami_logic(question: str) -> str:
 
     # Round to nearest dollar
     income = int(round(income_float))
+    print("💰 Final income value:", income)  # Debug log
 
     # 5) Check against the ordered thresholds
     if income < 19_600:
