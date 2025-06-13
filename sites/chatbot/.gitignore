@@ -48,3 +48,6 @@ next-env.d.ts
 # 🧹 Project-Specific Cleanup
 # ===============================
 sites/chatbot/package-lock.json
+# ===============================
+python-llm-service/models/*.gguf
+# ===============================
