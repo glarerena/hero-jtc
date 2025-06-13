@@ -1,56 +1,54 @@
 # Capstone Progress Report  
 **Project:** JTC Capstone Chatbot  
-**Date:** April 19, 2025  
+**Date:** June 13, 2025  
 
 ---
 
 ## ✅ Project Status
 
-We currently have a **working MVP prototype** of our housing chatbot. It uses Bloom's seeded data to return 5 real listings with links, allowing frontline users to interact with a simplified version of the eventual application.
+We currently have a **fully functioning chatbot** in the final phase of development. Originally called the **Bloom Assistant**, the project has now been rebranded as the **HERO Chatbot (Housing Essential Resource Organization)**. It helps frontline workers access housing listings and application information using Bloom's seeded data.
 
-All major parts of the stack are in place:
-- Frontend UI
-- Backend API integration
-- LLM service (Python-based) with seeded data support
+Key functionality includes:
+- AMI (Area Median Income) filtering for personalized listings
+- User-friendly UI with improved styling and focus behavior
+- Backend API integration and Python-based LLM service
 
 ---
 
 ## 🤝 Team Collaboration
 
-Everyone on the team has contributed to this repo:
-- Backend development
-- Frontend integration
-- Styling & UI
-- API scaffolding
-- LLM service setup
-- Documentation and project planning
+Every member of our team has contributed across all three project phases:
 
-We've been coordinating using both our **GitHub Project board** and a shared **Notion workspace** to assign tasks, track bugs, and map out development flow.
+- **Phase 1**: MVP prototype under the name *Bloom Assistant*
+- **Phase 2**: Feature enhancements and expanded logic
+- **Phase 3**: Final styling, renaming to HERO, and polishing for graduation
+
+We've used:
+- **Notion** to assign and track tasks across all 3 phases
+- **GitHub Projects** for sprint management and issue tracking
 
 ---
 
 ## 📋 GitHub Project Tracking
 
-- Our GitHub Project board is up to date.
-- We've been moving cards daily between "To Do", "In Progress", and "Done".
-- Issues include detailed comments reflecting daily progress.
-- Screenshots of the board are being saved to the `project_tracking/` folder as required.
+We’ve completed and documented 3 project boards:
+1. **MVP Bloom Assistant**
+2. **Bloom Assistant Phase 2**
+3. **Team 3 HERO Chatbot** *(currently active)*
+
+Each board reflects:
+- Clear task ownership and team collaboration
+- Regular updates and closed issues
 
 ---
 
-## 💬 Feedback from Presentation
+## 🛠️ Final Phase Focus
 
-We received feedback on our presentation slides. Suggestions included:
-- Clarifying our project timeline and key milestones
-- Being more explicit about the technical components and goals
+- Ensure smooth AMI filtering and chatbot response structure  
+- Finalize styling and accessibility features (keyboard focus, layout polish)  
+- Completely redesigned the slide deck in Canva using our own color scheme  
+- Matched HERO chatbot styling to our redesigned presentation for consistent branding  
+- Continue documenting challenges and resolutions  
+- Prepare project slides and walkthroughs for **graduation on June 26, 2025**  
+- Complete final QA and testing with the team
 
-We have not yet received direct feedback on the application itself.
-
----
-
-## 🛠️ Action Plan
-
-- Finalize chatbot response structure
-- Expand unit testing and edge case handling
-- Continue documenting technical challenges and their resolutions
-- **Prepare for Phase 2 of the Capstone project**
