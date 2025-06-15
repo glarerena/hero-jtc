@@ -11,6 +11,13 @@ $primary-color: #3490dc;
   border-radius: 4px;
   color: white;
 }
-.body {
-  background-color: black;
+
+body {
+  background-image: url('/team_3_bg.png');
+  background-size: 30% auto;
+  background-position: center;
+  background-repeat: no-repeat;
+  min-height: 100vh;
+  margin: 0;
+  padding: 0;
 }
