@@ -4,7 +4,7 @@ from application import get_housing_response
 from ami_utils import handle_ami_logic
 from typing import List, Optional
 
-# Load TinyLLaMA once
+# Load model once
 llm = Llama(model_path="models/tinyllama.gguf", n_ctx=2048)
 
 class Message:
@@ -23,23 +23,27 @@ def get_context(question: str, history: Optional[List[Message]] = None) -> str:
     question = question.lower().strip()
     history = history or []
 
-    # 💰 AMI
-    if "ami" in question or "income" in question or "how much" in question:
-        return handle_ami_logic(30000)  # simulate a test income case
+    # 💰 AMI logic
+    ami_keywords = ['income', 'ami', 'make', 'earn', 'salary', 'how much']
+    if any(keyword in question for keyword in ami_keywords):
+        try:
+            return handle_ami_logic(question)
+        except:
+            return "I'm sorry, I couldn't process your income question."
 
-    # 📝 Application
+    # 📝 Application logic
     if "apply" in question or "application" in question:
         return get_housing_response(question)
 
-    # 🏘️ Listings
-    if "listings" in question or "available" in question:
-        listings = get_live_housing_listings()  # this should be hardcoded now
+    # 🏘️ Listings logic
+    if "listings" in question or "available" in question or "show" in question:
+        listings = get_live_housing_listings()
         return format_listings(listings)
 
-    # 🤖 Fallback: TinyLLaMA
+    # 🤖 Fallback to LLM with multi-turn context
     try:
-        prompt = f"[INST] You are a helpful assistant providing concise, focused answers about affordable housing.\n\n{format_history(history)}User: {question}\nAssistant: [/INST]"
+        prompt = f"[INST] You are a helpful assistant providing concise, focused answers about affordable housing. Keep responses brief and to the point.\n\n{format_history(history)}User: {question}\nAssistant: [/INST]"
         output = llm(prompt, max_tokens=128, stop=["</s>"], echo=False)
         return output["choices"][0]["text"].strip()
-    except Exception:
-        return "Sorry, I’m having trouble answering that right now."
+    except Exception as e:
+        return "Sorry, I'm having trouble generating a response right now."
