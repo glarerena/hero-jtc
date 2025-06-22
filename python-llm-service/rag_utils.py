@@ -3,6 +3,7 @@ from listings import get_live_housing_listings, format_listings
 from application import get_housing_response
 from ami_utils import handle_ami_logic
 from typing import List, Optional
+import re
 
 # Load TinyLLaMA once
 llm = Llama(model_path="models/tinyllama.gguf", n_ctx=2048)
@@ -33,13 +34,27 @@ def get_context(question: str, history: Optional[List[Message]] = None) -> str:
 
     # 🏘️ Listings
     if "listings" in question or "available" in question:
-        listings = get_live_housing_listings()  # this should be hardcoded now
+        listings = get_live_housing_listings()
         return format_listings(listings)
 
     # 🤖 Fallback: TinyLLaMA
     try:
-        prompt = f"[INST] You are a helpful assistant providing concise, focused answers about affordable housing.\n\n{format_history(history)}User: {question}\nAssistant: [/INST]"
+        prompt = (
+            "### Instruction:\n"
+            "You are a helpful assistant providing concise answers about affordable housing.\n\n"
+            f"{format_history(history)}\n"
+            "### Response:\n"
+        )
+
         output = llm(prompt, max_tokens=128, stop=["</s>"], echo=False)
-        return output["choices"][0]["text"].strip()
+        raw = output["choices"][0]["text"].strip()
+
+        # 🧼 Clean up any echoes of User/Assistant and [INST] noise
+        cleaned = raw.replace("[INST]", "").replace("[/INST]", "").strip()
+        cleaned = re.sub(r"^(User:.*?\n)?(Assistant:)?", "", cleaned, flags=re.IGNORECASE).strip()
+
+        return cleaned
+
     except Exception:
         return "Sorry, I’m having trouble answering that right now."
+

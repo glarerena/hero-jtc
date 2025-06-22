@@ -1,85 +1,59 @@
-Affordable Housing Resource Guide — Bay Area
-This guide is designed for frontline workers assisting individuals and families in finding affordable housing options, applications, and eligibility information in the Bay Area.
+🏠 Affordable Housing Resource Guide — Bay Area (Trimmed)
+This guide helps frontline workers support clients in finding affordable housing options, applying successfully, and understanding eligibility in the Bay Area.
 
-🏠 Common Affordable Housing Programs
-Section 8 Housing Choice Voucher
-Helps low-income renters pay for housing in the private market.
+🏠 Common Programs
+Section 8 Vouchers – Helps low-income renters pay private-market rent.
 
-Public Housing
-Government-owned housing units for eligible low-income families, seniors, and individuals with disabilities.
+Public Housing – Government-managed housing for eligible individuals and families.
 
-Below Market Rate (BMR) Units – San Francisco
-Privately owned units offered at discounted rents for qualifying applicants.
+BMR Units (San Francisco) – Discounted rents for qualifying applicants.
 
-Local Housing Authority Directory
-Find city- or county-level programs offering rental help, emergency housing, and navigation support.
+Local Housing Authorities – City/county rental help and navigation programs.
 
-✅ Basic Eligibility Requirements
-Most programs consider:
+✅ Basic Eligibility Criteria
+Most programs assess:
 
-Income Level (typically below 50–80% of the Area Median Income)
+Income (usually ≤ 50–80% of AMI)
 
-Household Size
+Household size
 
-Legal Status (U.S. citizen or eligible immigration status)
+Legal status (citizen or eligible immigration)
 
-Rental History (including evictions or references)
+Rental history
 
-📄 Documents to Bring When Applying
-Frontline workers should encourage clients to prepare these ahead of time:
+📄 Documents to Gather
+Encourage clients to bring:
 
-Government-issued photo ID (driver’s license, passport, etc.)
+Photo ID
 
-Social Security cards for all household members (if available)
+Social Security cards
 
-Birth certificates (especially for children in the household)
+Proof of income (pay stubs, tax returns)
 
-Proof of income (pay stubs, tax returns, benefits letters)
+Lease or address proof (utility bills, letters)
 
-Bank statements (last 1–3 months)
+Immigration docs (if applicable)
 
-Employment verification or offer letter
-
-Proof of residence or lease
-
-Utility bills (to prove residency, if needed)
-
-Immigration documentation (if applicable)
-
-Previous landlord contact information or reference letters
+Landlord references
 
 📌 Application Tips
-Apply to multiple programs and waitlists to increase chances
+Apply to multiple waitlists
 
-Keep contact information updated
+Keep contact info updated
 
-Respond quickly to waitlist or interview notifications
+Respond promptly to notifications
 
-Ask if reasonable accommodations are available (e.g., for disabilities or language barriers)
+Ask for accommodations if needed
 
-💡 Tips for Frontline Workers
-Keep a printed checklist of required documents to share with clients
+Use local housing counselors when possible
 
-Use local nonprofit resources and housing counselors when available
+### 📚 Key Resources
 
-Encourage clients to prepare even if they think they won’t qualify — income rules vary by program
+- [San Francisco Housing Portal](https://housing.sfgov.org)  
+  Official affordable housing listings and lottery applications.
 
-Offer to help them interpret AMI charts or eligibility thresholds
+- [Alameda County Affordable Housing](https://www.acgov.org/cda/hcd/housing/affordablehousing.htm)  
+  County programs and rental assistance resources.
 
-Follow up regularly on the status of submitted applications
-
-📚 Resource Links Summary
-HUD Housing Programs Overview
-
-San Francisco Housing Portal
-
-Affordable Housing in Alameda County
-
-San Jose Housing Department
-
-California Housing Finance Agency (CalHFA)
-
-Homeless Outreach Program – Bay Area
-
-🧠 Tags
-affordable housing, housing application, income requirements, documents, Bay Area, eligibility, frontline worker, Section 8, BMR, public housing, apply, rent help, rental support, AMI, housing resources, application help, HUD, housing authority
+- [California Housing Finance Agency (CalHFA)](https://www.calhfa.ca.gov)  
+  Statewide help for renters, homeowners, and first-time buyers.
