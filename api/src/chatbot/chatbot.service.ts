@@ -23,21 +23,21 @@ export class ChatbotService {
     if (lower.includes('hello') || lower.includes('hi')) {
       console.log("💬 Matched static greeting");
       return {
-        response: "👋 Hello! I'm Bloom Assist — your guide to affordable housing listings in the Bay Area." + (shouldShowDisclaimer ? disclaimer : ""),
+        response: "👋 Hello! I'm HERO — your guide to affordable housing listings in the Bay Area." + (shouldShowDisclaimer ? disclaimer : ""),
       };
     }
 
     if (lower.includes('what do you do') || lower.includes('your job')) {
       console.log("💬 Matched static explanation");
       return {
-        response: "🏡 I help you find available housing listings by connecting directly to Bloom Housing's system." + (shouldShowDisclaimer ? disclaimer : ""),
+        response: "🏡 I help you find available housing listings by connecting directly to the Bay area resources." + (shouldShowDisclaimer ? disclaimer : ""),
       };
     }
 
     if (lower.includes('bye')) {
       console.log("💬 Matched static goodbye");
       return {
-        response: "👋 Thanks for stopping by!\n\n🔗 [Visit Bloom Housing](https://housingbayarea.org/)" + (shouldShowDisclaimer ? disclaimer : ""),
+        response: "👋 Thanks for stopping by!\n\n🔗 [Visit Bay Area Housing Search Tool](https://housingbayarea.org/)" + (shouldShowDisclaimer ? disclaimer : ""),
       };
     }
 
