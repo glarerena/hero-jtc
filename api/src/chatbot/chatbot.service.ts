@@ -14,7 +14,7 @@ export class ChatbotService {
     console.log("📜 Conversation history:", history);
 
     const disclaimer =
-      "\n\n⚠️ *This chatbot is an experimental tool. Please verify all information with official housing resources before making decisions.*";
+      "\n\n⚠️ *This HERO chatbot is an experimental tool. Please verify all information with official housing resources before making decisions.*";
 
     // Only show disclaimer in first message
     const shouldShowDisclaimer = history.length === 0;
@@ -37,7 +37,7 @@ export class ChatbotService {
     if (lower.includes('bye')) {
       console.log("💬 Matched static goodbye");
       return {
-        response: "👋 Thanks for stopping by!\n\n🔗 [Visit Bay Area Housing Search Tool](https://housingbayarea.org/)" + (shouldShowDisclaimer ? disclaimer : ""),
+        response: "👋 Thanks for giving HERO a try!\n\n🔗 [Bay Area Housing Tool](https://housingbayarea.org/)" + (shouldShowDisclaimer ? disclaimer : ""),
       };
     }
 
