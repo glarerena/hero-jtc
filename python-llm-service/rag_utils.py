@@ -1,13 +1,9 @@
-from llama_cpp import Llama  # type: ignore
 from listings import get_live_housing_listings, format_listings
 from application import get_housing_response
 from ami_utils import handle_ami_logic
 from typing import List, Optional
 import re
 import os
-
-# Load TinyLLaMA once
-llm = Llama(model_path="models/tinyllama.gguf", n_ctx=2048)
 
 # Load context once at startup
 def load_housing_context():
@@ -46,31 +42,65 @@ def get_context(question: str, history: Optional[List[Message]] = None) -> str:
         return get_housing_response(question)
 
     # 🏘️ Listings
-    if "listings" in question or "available" in question:
+    if "listings" in question or "available" in question or "housing" in question:
         listings = get_live_housing_listings()
         return format_listings(listings)
 
-    # 🤖 Fallback: TinyLLaMA with context
-    try:
-        prompt = (
-            "### Instruction:\n"
-            "You are a helpful assistant providing concise answers about affordable housing in the Bay Area. "
-            "Use the context below to provide accurate information and preserve any hyperlinks in your response.\n\n"
-            "### Context:\n"
-            f"{HOUSING_CONTEXT}\n\n"
-            f"{format_history(history)}\n"
-            "### Response:\n"
-        )
+    # 🏠 General housing questions
+    if any(word in question for word in ["housing", "affordable", "rent", "program", "help", "resource"]):
+        return """🏠 **Affordable Housing Resources in the Bay Area**
 
-        output = llm(prompt, max_tokens=256, stop=["</s>"], echo=False)
-        raw = output["choices"][0]["text"].strip()
+Here are the key resources and programs available:
 
-        # 🧼 Clean up any echoes of User/Assistant and [INST] noise
-        cleaned = raw.replace("[INST]", "").replace("[/INST]", "").strip()
-        cleaned = re.sub(r"^(User:.*?\n)?(Assistant:)?", "", cleaned, flags=re.IGNORECASE).strip()
+**📚 Key Resources:**
+- [San Francisco Housing Portal](https://housing.sfgov.org) - Official affordable housing listings and lottery applications
+- [Alameda County Affordable Housing](https://www.acgov.org/cda/hcd/housing/affordablehousing.htm) - County programs and rental assistance resources  
+- [California Housing Finance Agency (CalHFA)](https://www.calhfa.ca.gov) - Statewide help for renters, homeowners, and first-time buyers
 
-        return cleaned
+**🏠 Common Programs:**
+- **Section 8 Vouchers** – Helps low-income renters pay private-market rent
+- **Public Housing** – Government-managed housing for eligible individuals and families
+- **BMR Units (San Francisco)** – Discounted rents for qualifying applicants
+- **Local Housing Authorities** – City/county rental help and navigation programs
 
-    except Exception:
-        return "Sorry, I'm having trouble answering that right now."
+**✅ Basic Eligibility Criteria:**
+- Income (usually ≤ 50–80% of AMI)
+- Household size
+- Legal status (citizen or eligible immigration)
+- Rental history
+
+Would you like me to show you current available listings or help with applications?"""
+
+    # 📋 Documents and requirements
+    if any(word in question for word in ["document", "paperwork", "need", "require", "bring"]):
+        return """📄 **Documents You'll Need to Gather:**
+
+**Essential Documents:**
+- Photo ID
+- Social Security cards
+- Proof of income (pay stubs, tax returns)
+- Lease or address proof (utility bills, letters)
+- Immigration docs (if applicable)
+- Landlord references
+
+**📌 Application Tips:**
+- Apply to multiple waitlists
+- Keep contact info updated
+- Respond promptly to notifications
+- Ask for accommodations if needed
+- Use local housing counselors when possible
+
+Need help with the application process?"""
+
+    # 🤖 Fallback: General help response
+    return """👋 **Welcome to HERO - Your Bay Area Housing Assistant!**
+
+I can help you with:
+- 🏠 **Available housing listings** - Ask for "listings" or "available housing"
+- 📝 **Application help** - Ask about "applications" or "how to apply"
+- 💰 **Income requirements** - Ask about "AMI" or "income limits"
+- 📄 **Required documents** - Ask about "documents" or "paperwork"
+- 🏘️ **General housing resources** - Ask about "resources" or "programs"
+
+What would you like to know about affordable housing in the Bay Area?"""
 

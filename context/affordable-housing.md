@@ -1,4 +1,4 @@
-🏠 Affordable Housing Resource Guide — Bay Area (Trimmed)
+<!-- 🏠 Affordable Housing Resource Guide — Bay Area (Trimmed)
 This guide helps frontline workers support clients in finding affordable housing options, applying successfully, and understanding eligibility in the Bay Area.
 
 🏠 Common Programs
@@ -45,7 +45,7 @@ Respond promptly to notifications
 
 Ask for accommodations if needed
 
-Use local housing counselors when possible
+Use local housing counselors when possible -->
 
 ### 📚 Key Resources
 
