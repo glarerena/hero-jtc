@@ -12,7 +12,7 @@ class ChatRequest(BaseModel):
     message: str
     history: Optional[List[Message]] = []
 
-app = FastAPI()
+app = FastAPI(title="HERO Python API", description="Affordable Housing Assistant API")
 
 app.add_middleware(
     CORSMiddleware,
@@ -20,6 +20,16 @@ app.add_middleware(
     allow_methods=["*"],
     allow_headers=["*"]
 )
+
+@app.get("/")
+async def root():
+    """Health check endpoint for Render"""
+    return {"status": "healthy", "service": "HERO Python API", "version": "no-llm"}
+
+@app.get("/health")
+async def health_check():
+    """Health check endpoint"""
+    return {"status": "healthy", "message": "HERO Python API is running"}
 
 @app.post("/generate") 
 async def generate_response(request: ChatRequest):
