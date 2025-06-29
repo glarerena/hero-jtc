@@ -1,3 +1,4 @@
+# NO-LLM VERSION - This file contains only hardcoded responses, no LLM dependencies
 from listings import get_live_housing_listings, format_listings
 from application import get_housing_response
 from ami_utils import handle_ami_logic
