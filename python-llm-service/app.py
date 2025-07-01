@@ -31,6 +31,10 @@ async def root():
     """Health check endpoint for Render"""
     return {"status": "healthy", "service": "HERO Python API"}
 
+@app.get("/health")
+async def health_check():
+    return {"status": "healthy", "message": "HERO Python API is running"}
+
 @app.post("/generate") 
 async def generate_response(request: ChatRequest):
     message = request.message
