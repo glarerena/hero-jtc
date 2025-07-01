@@ -1,6 +1,8 @@
 # HERO Chatbot  
 **Housing Essential Resource Organization**
 
+<img src="images/purple_house.png" alt="HERO Favicon" width="48" />
+
 A chatbot to help find affordable housing resources in the Bay Area.
 
 ## 🚀 Deploy
