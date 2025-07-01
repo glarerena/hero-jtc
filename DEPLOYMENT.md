@@ -5,37 +5,47 @@ This guide will help you deploy the HERO chatbot without any LLM dependencies us
 ## Architecture
 
 - **Frontend**: Next.js app deployed on Vercel
-- **Backend**: NestJS API deployed on Railway
-- **Python Service**: FastAPI service deployed on Railway (no LLM dependencies)
+- **Backend**: NestJS API deployed on Render
+- **Python Service**: FastAPI service deployed on Render (no LLM dependencies)
 
 ## Deployment Steps
 
-### 1. Python FastAPI Service (Railway)
+### 1. Python FastAPI Service (Render)
 
-1. Go to [Railway Dashboard](https://railway.app/dashboard)
-2. Click "New Project" → "Deploy from GitHub repo"
+1. Go to [Render Dashboard](https://dashboard.render.com)
+2. Click "New +" → "Web Service"
 3. Connect your GitHub repository
 4. Configure the service:
+   - **Name**: `hero-python-api`
    - **Root Directory**: `python-llm-service`
+   - **Environment**: `Python 3`
    - **Build Command**: `pip install -r requirements.txt`
    - **Start Command**: `python main.py`
+   - **Plan**: Free
 
-5. Deploy and note the URL (e.g., `https://hero-python-api.railway.app`)
+5. Add environment variables:
+   - `PYTHON_VERSION`: `3.11`
 
-### 2. NestJS Backend (Railway)
+6. Deploy and note the URL (e.g., `https://hero-python-api.onrender.com`)
 
-1. Go to [Railway Dashboard](https://railway.app/dashboard)
-2. Click "New Project" → "Deploy from GitHub repo"
+### 2. NestJS Backend (Render)
+
+1. Go to [Render Dashboard](https://dashboard.render.com)
+2. Click "New +" → "Web Service"
 3. Connect your GitHub repository
 4. Configure the service:
+   - **Name**: `hero-nestjs-api`
    - **Root Directory**: `api`
+   - **Environment**: `Node`
    - **Build Command**: `npm install && npm run build`
    - **Start Command**: `npm run start:prod`
+   - **Plan**: Free
 
-5. Add environment variable:
-   - `PYTHON_API_URL`: `https://hero-python-api.railway.app` (from step 1)
+5. Add environment variables:
+   - `NODE_ENV`: `production`
+   - `PYTHON_API_URL`: `https://hero-python-api.onrender.com` (from step 1)
 
-6. Deploy and note the URL (e.g., `https://hero-nestjs-api.railway.app`)
+6. Deploy and note the URL (e.g., `https://hero-nestjs-api.onrender.com`)
 
 ### 3. Next.js Frontend (Vercel)
 
@@ -49,16 +59,18 @@ This guide will help you deploy the HERO chatbot without any LLM dependencies us
    - **Output Directory**: `.next`
 
 5. Add environment variable:
-   - `NEXT_PUBLIC_API_URL`: `https://hero-nestjs-api.railway.app` (from step 2)
+   - `NEXT_PUBLIC_API_URL`: `https://hero-nestjs-api.onrender.com` (from step 2)
 
 6. Deploy
 
 ## Environment Variables Summary
 
 ### Python Service
-- `PORT`: Set automatically by Railway
+- `PORT`: Set automatically by Render
+- `PYTHON_VERSION`: `3.11`
 
 ### NestJS Backend
+- `NODE_ENV`: `production`
 - `PYTHON_API_URL`: URL of your Python service
 
 ### Next.js Frontend
@@ -66,8 +78,8 @@ This guide will help you deploy the HERO chatbot without any LLM dependencies us
 
 ## Testing the Deployment
 
-1. **Test Python Service**: Visit `https://your-python-service.railway.app/health` for health check
-2. **Test NestJS Backend**: Visit `https://your-nestjs-service.railway.app` for API health check
+1. **Test Python Service**: Visit `https://your-python-service.onrender.com/health` for health check
+2. **Test NestJS Backend**: Visit `https://your-nestjs-service.onrender.com` for API health check
 3. **Test Frontend**: Visit your Vercel URL and try the chatbot
 
 ## Features Available
@@ -91,12 +103,12 @@ The deployed version includes:
 
 ### Logs
 
-- **Railway**: Check service logs in the Railway dashboard
+- **Render**: Check service logs in the Render dashboard
 - **Vercel**: Check deployment logs in the Vercel dashboard
 
 ## Cost
 
-- **Railway**: Free tier (2 projects)
+- **Render**: Free tier (2 services)
 - **Vercel**: Free tier
 - **Total**: $0/month
 

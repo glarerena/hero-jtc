@@ -1,0 +1,24 @@
+services:
+  - type: web
+    name: hero-python-api
+    env: python
+    plan: free
+    rootDir: python-llm-service
+    buildCommand: pip install -r requirements.txt
+    startCommand: python main.py
+    envVars:
+      - key: PYTHON_VERSION
+        value: 3.11
+
+  - type: web
+    name: hero-nestjs-api
+    env: node
+    plan: free
+    rootDir: api
+    buildCommand: npm install && npm run build
+    startCommand: npm run start:prod
+    envVars:
+      - key: NODE_ENV
+        value: production
+      - key: PYTHON_API_URL
+        value: https://hero-python-api.onrender.com 
