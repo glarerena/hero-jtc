@@ -29,12 +29,7 @@ app.add_middleware(
 @app.get("/")
 async def root():
     """Health check endpoint for Render"""
-    return {"status": "healthy", "service": "HERO Python API", "version": "no-llm"}
-
-@app.get("/health")
-async def health_check():
-    """Health check endpoint"""
-    return {"status": "healthy", "message": "HERO Python API is running"}
+    return {"status": "healthy", "service": "HERO Python API"}
 
 @app.post("/generate") 
 async def generate_response(request: ChatRequest):
@@ -53,4 +48,9 @@ async def generate_response(request: ChatRequest):
         print("⚠️ No context generated or listings found.")
 
     return { "response": context }
+
+@app.get("/{path:path}")
+async def catch_all(path: str):
+    """Catch all route to help debug 404s"""
+    return {"error": "Not found", "path": path, "available_endpoints": ["/", "/health", "/api/health", "/status", "/generate"]}
 
