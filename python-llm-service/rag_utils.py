@@ -4,19 +4,6 @@ from application import get_housing_response
 from ami_utils import handle_ami_logic
 from typing import List, Optional
 import re
-import os
-
-# Load context once at startup
-def load_housing_context():
-    try:
-        context_path = os.path.join(os.path.dirname(__file__), "..", "context", "affordable-housing.md")
-        with open(context_path, 'r', encoding='utf-8') as f:
-            return f.read().strip()
-    except Exception as e:
-        print(f"⚠️ Could not load context file: {e}")
-        return ""
-
-HOUSING_CONTEXT = load_housing_context()
 
 class Message:
     def __init__(self, role: str, content: str):
