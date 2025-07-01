@@ -12,7 +12,12 @@ class ChatRequest(BaseModel):
     message: str
     history: Optional[List[Message]] = []
 
-app = FastAPI(title="HERO Python API", description="Affordable Housing Assistant API")
+app = FastAPI(
+    title="HERO Python API", 
+    description="Affordable Housing Assistant API",
+    docs_url=None,  # Disable Swagger UI
+    redoc_url=None  # Disable ReDoc
+)
 
 app.add_middleware(
     CORSMiddleware,
