@@ -15,10 +15,10 @@ services:
     env: node
     plan: free
     rootDir: api
-    buildCommand: npm install && npm run build
-    startCommand: npm run start:prod
+    buildCommand: yarn install && yarn build
+    startCommand: yarn start:prod
     envVars:
       - key: NODE_ENV
         value: production
       - key: PYTHON_API_URL
-        value: https://hero-python-api.onrender.com 
+        value: https://hero-python-api.onrender.com
