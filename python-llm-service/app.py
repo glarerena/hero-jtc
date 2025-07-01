@@ -55,6 +55,5 @@ async def generate_response(request: ChatRequest):
 
 @app.get("/{path:path}")
 async def catch_all(path: str):
-    """Catch all route to help debug 404s"""
-    return {"error": "Not found", "path": path, "available_endpoints": ["/", "/health", "/api/health", "/status", "/generate"]}
+    return {"message": f"You reached {path}. The server is running!"}
 

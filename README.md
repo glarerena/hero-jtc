@@ -29,14 +29,22 @@ A chatbot to help find affordable housing resources in the Bay Area.
 ## 💻 Local Dev
 
 ```bash
-# Python
-cd python-llm-service && python main.py
+# Terminal 1: Python Service
+cd python-llm-service
+python3 -m venv venv
+source venv/bin/activate
+pip install -r requirements.txt
+uvicorn app:app --reload --port 8000
 
-# Backend  
-cd api && yarn start
+# Terminal 2: NestJS Backend
+cd api
+yarn install
+yarn start
 
-# Frontend
-cd sites/chatbot && yarn dev
+# Terminal 3: Frontend
+cd sites/chatbot
+yarn install
+yarn dev
 ```
 
 Visit: `http://localhost:3000`
