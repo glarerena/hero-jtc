@@ -37,8 +37,8 @@ This guide will help you deploy the HERO chatbot without any LLM dependencies us
    - **Name**: `hero-nestjs-api`
    - **Root Directory**: `api`
    - **Environment**: `Node`
-   - **Build Command**: `npm install && npm run build`
-   - **Start Command**: `npm run start:prod`
+   - **Build Command**: `yarn install && yarn build`
+   - **Start Command**: `yarn start:prod`
    - **Plan**: Free
 
 5. Add environment variables:
@@ -55,7 +55,7 @@ This guide will help you deploy the HERO chatbot without any LLM dependencies us
 4. Configure the project:
    - **Framework Preset**: Next.js
    - **Root Directory**: `sites/chatbot`
-   - **Build Command**: `npm run build`
+   - **Build Command**: `yarn build`
    - **Output Directory**: `.next`
 
 5. Add environment variable:
@@ -75,6 +75,32 @@ This guide will help you deploy the HERO chatbot without any LLM dependencies us
 
 ### Next.js Frontend
 - `NEXT_PUBLIC_API_URL`: URL of your NestJS backend
+
+## Local Development
+
+**All Node.js/Next.js/NestJS commands use `yarn`.**
+
+```bash
+# Terminal 1: Python Service
+cd python-llm-service
+python3 -m venv venv
+source venv/bin/activate
+pip install -r requirements.txt
+uvicorn app:app --reload --port 8000
+
+# Terminal 2: NestJS Backend
+cd api
+yarn install
+yarn build
+yarn start:prod
+
+# Terminal 3: Frontend
+cd sites/chatbot
+yarn install
+yarn dev
+```
+
+Visit: `http://localhost:3000`
 
 ## Testing the Deployment
 
