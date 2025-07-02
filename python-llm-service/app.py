@@ -4,6 +4,10 @@ from rag_utils import get_context
 from typing import List, Optional
 from pydantic import BaseModel
 
+# -----------------------------
+# Models
+# -----------------------------
+
 class Message(BaseModel):
     role: str
     content: str
@@ -12,19 +16,36 @@ class ChatRequest(BaseModel):
     message: str
     history: Optional[List[Message]] = []
 
+# -----------------------------
+# FastAPI Setup
+# -----------------------------
+
 app = FastAPI(
-    title="HERO Python API", 
+    title="HERO Python API",
     description="Affordable Housing Assistant API",
-    docs_url=None,  # Disable Swagger UI
-    redoc_url=None  # Disable ReDoc
+    docs_url=None,   # Disable Swagger UI
+    redoc_url=None   # Disable ReDoc
 )
+
+# -----------------------------
+# CORS Middleware
+# -----------------------------
 
 app.add_middleware(
     CORSMiddleware,
-    allow_origins=["*"],
-    allow_methods=["*"],
+    allow_origins=[
+        "http://localhost:3000",               # Local development
+        "https://hero-app.vercel.app",         # Vercel deployment
+        "https://first-hero.dev"      # ✅ Replace after domain purchase
+    ],
+    allow_credentials=True,
+    allow_methods=["GET", "POST", "OPTIONS"],
     allow_headers=["*"]
 )
+
+# -----------------------------
+# Routes
+# -----------------------------
 
 @app.get("/")
 async def root():
@@ -35,7 +56,7 @@ async def root():
 async def health_check():
     return {"status": "healthy", "message": "HERO Python API is running"}
 
-@app.post("/generate") 
+@app.post("/generate")
 async def generate_response(request: ChatRequest):
     message = request.message
     history = request.history
@@ -51,9 +72,8 @@ async def generate_response(request: ChatRequest):
     else:
         print("⚠️ No context generated or listings found.")
 
-    return { "response": context }
+    return {"response": context}
 
 @app.get("/{path:path}")
 async def catch_all(path: str):
     return {"message": f"You reached {path}. The server is running!"}
-
